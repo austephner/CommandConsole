@@ -57,5 +57,10 @@ namespace CommandConsole.Examples
             _output.text = "";
             LayoutRebuilder.ForceRebuildLayoutImmediate(_outputContainer);
         }
+
+        public override string GetCurrentContent()
+        {
+            return _output.text;
+        }
     }
 }

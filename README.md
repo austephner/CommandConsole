@@ -5,11 +5,9 @@ An in-game console API with easily implementable commands. New actionable comman
 ![Console Example](https://i.imgur.com/mVoAzjC.gif)
 
 #### Features
-- Extendable 
-- Easily implement new console commands
-- Command metadata for "help" and support
-- Logging and console writing
-- Basic console with Unity UI elements included
+- Easily implement new custom commands with C#
+- Example console is fully functional and customizable
+- Some default commands like "help", "echo", "clear", "dump"
 
 # Usage
 ### General Setup

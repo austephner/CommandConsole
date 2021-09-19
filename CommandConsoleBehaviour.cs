@@ -149,6 +149,11 @@ namespace CommandConsole
         /// Clears the console of all text.
         /// </summary>
         public abstract void Clear();
+
+        /// <summary>
+        /// Returns all current content displayed by the console.
+        /// </summary>
+        public abstract string GetCurrentContent();
         
         #endregion
         
