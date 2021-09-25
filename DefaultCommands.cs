@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 
 namespace CommandConsole
 {
+    /// <summary>
+    /// Prints all parameterized text to the console.
+    /// </summary>
     public class EchoCommand : ConsoleCommand
     {
         public override string[] GetNames()
@@ -24,6 +26,9 @@ namespace CommandConsole
         }
     }
     
+    /// <summary>
+    /// Displays help for the given command.
+    /// </summary>
     public class HelpCommand : ConsoleCommand
     {
         public override string[] GetNames()
@@ -62,6 +67,9 @@ namespace CommandConsole
         }
     }
 
+    /// <summary>
+    /// Clears the console.
+    /// </summary>
     public class ClearCommand : ConsoleCommand
     {
         public override string[] GetNames()
@@ -80,6 +88,9 @@ namespace CommandConsole
         }
     }
 
+    /// <summary>
+    /// Dumps all console content to a file. 
+    /// </summary>
     public class DumpCommand : ConsoleCommand
     {
         public override string[] GetNames()
