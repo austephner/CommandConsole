@@ -9,6 +9,9 @@ An in-game console API with easily implementable commands. New actionable comman
 - Example console is fully functional and customizable
 - Some default commands like "help", "echo", "clear", "dump"
 
+#### Issues
+The current implementation doesn't supporting pressing the "Enter" / "Return" key to submit a command. I'm too lazy to figure that one out. 
+
 # Usage
 ### General Setup
 1. Drag the example console prefab into the current scene
@@ -20,6 +23,7 @@ An in-game console API with easily implementable commands. New actionable comman
 2. Import the `CommandConsole` namespace as well as `System.Collections.Generic`. 
 3. Create a new class that inherits from `ConsoleCommand`
 4. Implement all abstract members of the class
+5. The command will automatically be picked up by the console via C# Reflection, no injection or other updates are needed!
 
 ```c#
 using System.Collections.Generic;

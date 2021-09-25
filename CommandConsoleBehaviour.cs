@@ -6,14 +6,22 @@ using UnityEngine;
 
 namespace CommandConsole
 {
+    /// <summary>
+    /// Allows for execution of <see cref="ConsoleCommand"/> implementations.
+    /// </summary>
     public abstract class CommandConsoleBehaviour : MonoBehaviour
     {
+        /// <summary>
+        /// The generic warning for invalid commands.
+        /// </summary>
         public const string INVALID_CMD_MSG = "<color=#FF0000FF>Command \"{0}\" does not exist.</color>";
         
         #region Settings
 
+        [Tooltip("Denotes whether or not this game object will be destroyed on load.")]
         [SerializeField] private bool _dontDestroyOnLoad;
 
+        [Tooltip("Command combination to toggle the console.")]
         [SerializeField] private KeyCode
             _toggleKeyPrimary = KeyCode.LeftShift,
             _toggleKeySecondary = KeyCode.BackQuote;
@@ -22,8 +30,14 @@ namespace CommandConsole
 
         #region Properties
         
+        /// <summary>
+        /// The "open" state of the console.
+        /// </summary>
         public bool open => _open;
         
+        /// <summary>
+        /// The singleton instance of this command console behaviour.
+        /// </summary>
         public static CommandConsoleBehaviour Instance { get; private set; }
 
         #endregion
@@ -32,12 +46,19 @@ namespace CommandConsole
         
         private bool _open;
 
+        /// <summary>
+        /// List of loaded commands found through reflection.
+        /// </summary>
         protected List<ConsoleCommand> consoleCommands;
         
         #endregion
 
         #region Unity Events
         
+        /// <summary>
+        /// Sets up the singleton instance and finds all derived types of <see cref="ConsoleCommand"/>. This is where
+        /// the loading of new commands with Reflection is done.
+        /// </summary>
         protected virtual void OnEnable()
         {
             if (Instance && Instance != this)
@@ -72,6 +93,9 @@ namespace CommandConsole
             }
         }
 
+        /// <summary>
+        /// The base implementation monitors for input key presses to open/close the console.
+        /// </summary>
         protected virtual void Update()
         {
             if (Input.GetKey(_toggleKeyPrimary) && Input.GetKeyDown(_toggleKeySecondary))
@@ -85,7 +109,8 @@ namespace CommandConsole
         #region Protected Utilities
 
         /// <summary>
-        /// Handles the given input, invoking commands as needed with parameters.
+        /// Handles the given input, invoking commands as needed with parameters. Parameters are created by separating
+        /// input over spaces.
         /// </summary>
         /// <param name="rawInput">The uninterpreted user input.</param>
         protected void HandleInput(string rawInput)
@@ -125,22 +150,24 @@ namespace CommandConsole
         #region Abstract Methods
 
         /// <summary>
-        /// Processes the current console input as commands.
+        /// Should be used to invoke <see cref="HandleInput"/> with some raw text based input provided by a text field
+        /// where a user may have entered content. This function should otherwise handle the processing of input into
+        /// the console system.
         /// </summary>
         protected abstract void Submit();
         
         /// <summary>
-        /// Invoked when <see cref="Show"/> is called.
+        /// Invoked when <see cref="Show"/> is called. The <see cref="open"/> state will be <c>true</c>.
         /// </summary>
         protected abstract void OnShow();
         
         /// <summary>
-        /// Invoked when <see cref="Hide"/> is called.
+        /// Invoked when <see cref="Hide"/> is called. The  <see cref="open"/> state will be <c>false</c>.
         /// </summary>
         protected abstract void OnHide();
 
         /// <summary>
-        /// Prints the given text.
+        /// Prints the given text to the console.
         /// </summary>
         /// <param name="text">The text to print.</param>
         public abstract void Print(string text);
