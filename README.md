@@ -1,4 +1,7 @@
-﻿# Command Console
+﻿# Command Console [OBSOLETE]
+#### NOTE
+This project has been deprecated because I spontaneously re-made the entire thing in a weekend but _better_. You can find the new version [here](https://github.com/austephner/DevConsole). 
+ 
 #### Summary
 An in-game console API with easily implementable commands. New actionable commands are discovered at startup using C# Reflection, so no dependency injection or additional setup is required!
 
